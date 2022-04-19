@@ -1,0 +1,3 @@
+1. I structure my Player as a class, and all of the players in a circular linked list.
+2. I structure the game as 2 functions, one checking if the game still going, and the other roll dice and decides.
+3. Both the player and circular linked list are classes, and the game itself are functions.
