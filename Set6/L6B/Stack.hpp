@@ -12,12 +12,12 @@ class Stack {
         ~Stack();
         Stack(const Stack<T>& OTHER);
         // method
-        Node<T>* head();
-        unsigned int size();
+        Node<T>* head() const;
+        unsigned int size() const;
         void push(T VAL);
-        T peak();
+        T peak() const;
         T pop();
-        bool isEmpty();
+        bool isEmpty() const;
 };
 
 // default
@@ -27,7 +27,7 @@ Stack<T>::Stack() {
     mSize = 0;
 }
 template<typename T>
-Stack<T>::~Stack() {
+Stack<T>::~Stack() {0
     Node<T> *pDeleteNode;
     Node<T> *pNextNode;
     pDeleteNode = mHead;
@@ -55,11 +55,11 @@ Stack<T>::Stack(const Stack<T>& OTHER) {
 }
 // method
 template<typename T>
-Node<T>* Stack<T>::head() {
+Node<T>* Stack<T>::head() const {
     return mHead;
 }
 template<typename T>
-unsigned int Stack<T>::size() {
+unsigned int Stack<T>::size() const{
     return mSize;
 }
 template<typename T>
@@ -79,7 +79,7 @@ void Stack<T>::push(T VAL) {
     mSize++;
 }
 template<typename T>
-T Stack<T>::peak() {
+T Stack<T>::peak() const {
     Node<T> *pCurrent = mHead;
     if(pCurrent != nullptr) {
         while(pCurrent->pNext != nullptr) {
@@ -97,16 +97,15 @@ T Stack<T>::pop() {
         while(pDeleteNode->pNext != nullptr) {
             pDeleteNode = pDeleteNode->pNext;
         }
-        T VAL = pDeleteNode->value;
+        return pDeleteNode->value;
         delete pDeleteNode;
         mSize--;
-        return VAL;
     } else {
         return T();
     }
 }
 template<typename T>
-bool Stack<T>::isEmpty() {
+bool Stack<T>::isEmpty() const {
     bool empty = true;
     if(mSize > 1) {
         empty = false;
