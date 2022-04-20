@@ -27,7 +27,7 @@ Stack<T>::Stack() {
     mSize = 0;
 }
 template<typename T>
-Stack<T>::~Stack() {0
+Stack<T>::~Stack() {
     Node<T> *pDeleteNode;
     Node<T> *pNextNode;
     pDeleteNode = mHead;
