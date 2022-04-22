@@ -6,7 +6,7 @@
 #include "LinkedList.hpp"
 using namespace std;
 bool open_file(ifstream&, string);
-void print(LinkedList<LinkedList<int>>*&);
-int max(LinkedList<LinkedList<int>>*&);
-int min(LinkedList<LinkedList<int>>*&);
+void print(LinkedList<LinkedList<int>*>&);
+int max(LinkedList<LinkedList<int>*>&);
+int min(LinkedList<LinkedList<int>*>&);
 #endif

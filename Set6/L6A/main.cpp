@@ -33,15 +33,14 @@ int main(int argc, char* argv[]) {
     // read file
     int n, m;
     fileIn >> n;
-    LinkedList<LinkedList<int>>* lGrid = new LinkedList<LinkedList<int>>;
+    LinkedList<LinkedList<int>*> lGrid;
     for(int i = 0; i < n; i++) {
         LinkedList<int>* lList = new LinkedList<int>;
         for(int j = 0; j < n; j++) {
             fileIn >> m;
             lList->pushBack(m);
         }
-        lGrid->pushBack(*lList);
-        delete lList;
+        lGrid.pushBack(lList);
     }
 
     // print
@@ -53,6 +52,6 @@ int main(int argc, char* argv[]) {
     minValue = min(lGrid);
     cout << "The min is: " << minValue << "\nThe max is: " << maxValue;
     // clean up
-    delete lGrid;
+    // delete lGrid;
     return 0;
 }
