@@ -11,8 +11,8 @@
 using namespace std;
 bool open_file(ifstream&, string);
 void print(DoublyLinkedList<DoublyLinkedList<char>*>&);
-void findStartUsingBFS(const DoublyLinkedList<DoublyLinkedList<char>*>&, DoublyLinkedList<DoublyLinkedList<bool>*>, Queue<Position>, Position&);
-void findStartUsingDFS(const DoublyLinkedList<DoublyLinkedList<char>*>&, DoublyLinkedList<DoublyLinkedList<bool>*>, Stack<Position>,Position&);
+Position findStartUsingBFS(const DoublyLinkedList<DoublyLinkedList<char>*>&, DoublyLinkedList<DoublyLinkedList<bool>*>, Queue<Position>);
+Position findStartUsingDFS(const DoublyLinkedList<DoublyLinkedList<char>*>&, DoublyLinkedList<DoublyLinkedList<bool>*>, Stack<Position>);
 void findEndUsingBFS(DoublyLinkedList<DoublyLinkedList<char>*>&, DoublyLinkedList<DoublyLinkedList<bool>*>&, Queue<Position>,Position&);
 void findEndUsingDFS(DoublyLinkedList<DoublyLinkedList<char>*>&, DoublyLinkedList<DoublyLinkedList<bool>*>&, Stack<Position>,Position&);
 int operation_input(int, int);

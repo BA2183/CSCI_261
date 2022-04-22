@@ -62,8 +62,9 @@ int main(int argc, char* argv[]) {
     if(userInput == 1) {
         Queue<Position> posList;
         posList.push(startPos);
-        findStartUsingBFS(lGrid, checkTable, posList, startPos);
-        findEndUsingBFS(lGrid, checkTable, posList, startPos);
+        startPos = findStartUsingBFS(lGrid, checkTable, posList);
+        cout << startPos.rowNum << "x" << startPos.colNum;
+        //findEndUsingBFS(lGrid, checkTable, posList, startPos);
         // DFS
     } else {
         Stack<Position> posList;
