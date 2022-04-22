@@ -20,11 +20,11 @@ bool open_file(ifstream& fileIn, const string fileName) {
         return true;
     }
 }
-void print(LinkedList<LinkedList<int>>*& lGrid) {
-    Node<LinkedList<int>>* pCurrent = lGrid->head();
+void print(LinkedList<LinkedList<int>*>& lGrid) {
+    Node<LinkedList<int>*>* pCurrent = lGrid.head();
     Node<int>* pSecondCurrent;
     while(pCurrent != nullptr) {
-        pSecondCurrent = (pCurrent->value).head();
+        pSecondCurrent = (pCurrent->value)->head();
         while(pSecondCurrent != nullptr) {
             cout << pSecondCurrent->value << " ";
             pSecondCurrent = pSecondCurrent->pNext;
@@ -33,12 +33,12 @@ void print(LinkedList<LinkedList<int>>*& lGrid) {
         pCurrent = pCurrent->pNext;
     }
 }
-int max(LinkedList<LinkedList<int>>*& lGrid) {
-    int tempMax = (((lGrid->head())->value).head())->value;
-    Node<LinkedList<int>>* pCurrent = lGrid->head();
+int max(LinkedList<LinkedList<int>*>& lGrid) {
+    int tempMax = (((lGrid.head())->value)->head())->value;
+    Node<LinkedList<int>*>* pCurrent = lGrid.head();
     Node<int>* pSecondCurrent;
     while(pCurrent != nullptr) {
-        pSecondCurrent = (pCurrent->value).head();
+        pSecondCurrent = (pCurrent->value)->head();
         while(pSecondCurrent != nullptr) {
             if(pSecondCurrent->value > tempMax) {
                 tempMax = pSecondCurrent->value;
@@ -50,12 +50,12 @@ int max(LinkedList<LinkedList<int>>*& lGrid) {
 
     return tempMax;
 }
-int min(LinkedList<LinkedList<int>>*& lGrid) {
-    int tempMin = (((lGrid->head())->value).head())->value;
-    Node<LinkedList<int>>* pCurrent = lGrid->head();
+int min(LinkedList<LinkedList<int>*>& lGrid) {
+    int tempMin = (((lGrid.head())->value)->head())->value;
+    Node<LinkedList<int>*>* pCurrent = lGrid.head();
     Node<int>* pSecondCurrent;
     while(pCurrent != nullptr) {
-        pSecondCurrent = (pCurrent->value).head();
+        pSecondCurrent = (pCurrent->value)->head();
         while(pSecondCurrent != nullptr) {
             if(pSecondCurrent->value < tempMin) {
                 tempMin = pSecondCurrent->value;
