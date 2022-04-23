@@ -55,8 +55,34 @@ Position findStartUsingBFS(const DoublyLinkedList<DoublyLinkedList<char>*>& lGri
         }
     }
 }
-void findStartUsingDFS(const DoublyLinkedList<DoublyLinkedList<char>*>& lGrid, DoublyLinkedList<DoublyLinkedList<bool>*> checkTable, Stack<Position> posList, Position& startPos);
-void findEndUsingBFS(DoublyLinkedList<DoublyLinkedList<char>*>& lGrid, DoublyLinkedList<DoublyLinkedList<bool>*>& checkTable, Queue<Position> posList, Position& startPos) {
+Position findStartUsingDFS(const DoublyLinkedList<DoublyLinkedList<char>*>& lGrid, DoublyLinkedList<DoublyLinkedList<bool>*> checkTable, Stack<Position> posList) {
+    Position curPos;
+    DoublyNode<DoublyLinkedList<bool>*>* curNode;
+    while(!posList.isEmpty()) {
+        curPos = posList.pop();
+        if(lGrid.get(curPos.rowNum)->get(curPos.colNum) == 'S') {
+            return curPos;
+            break;
+        } else {
+            curNode = checkTable.head();
+            for(int z = 0; z < (checkTable.size() - 1); z++) {
+                curNode = curNode->pNext;
+            }
+            curNode->value->set(curPos.colNum, true);
+            // get neighbor node
+            if((curPos.rowNum + 1) < lGrid.size() && checkTable.get(curPos.rowNum + 1)->get(curPos.colNum) == false) {
+                posList.push(Position(curPos.rowNum + 1, curPos.colNum));
+            } else if((curPos.colNum + 1) < lGrid.get(curPos.rowNum)->size() && checkTable.get(curPos.rowNum)->get(curPos.colNum + 1) == false) {
+                posList.push(Position(curPos.rowNum, curPos.colNum + 1));
+            } else if((curPos.rowNum - 1) >= 0 && checkTable.get(curPos.rowNum - 1)->get(curPos.colNum) == false) {
+                posList.push(Position(curPos.rowNum - 1, curPos.colNum));
+            } else if((curPos.colNum - 1) >= 0 && checkTable.get(curPos.rowNum)->get(curPos.colNum - 1) == false) {
+                posList.push(Position(curPos.rowNum, curPos.colNum - 1));
+            }
+        }
+    }
+}
+void findEndUsingBFS(DoublyLinkedList<DoublyLinkedList<char>*>& lGrid, DoublyLinkedList<DoublyLinkedList<bool>*>& checkTable, Queue<Position> posList) {
     Position curPos;
     DoublyNode<DoublyLinkedList<bool>*>* curNodeOne;
     DoublyNode<DoublyLinkedList<char>*>* curNodeTwo;
@@ -90,7 +116,37 @@ void findEndUsingBFS(DoublyLinkedList<DoublyLinkedList<char>*>& lGrid, DoublyLin
         }
     }
 }
-void findEndUsingDFS(DoublyLinkedList<DoublyLinkedList<char>*>& lGrid, DoublyLinkedList<DoublyLinkedList<bool>*>& checkTable, Stack<Position> posList, Position& startPos);
+void findEndUsingDFS(DoublyLinkedList<DoublyLinkedList<char>*>& lGrid, DoublyLinkedList<DoublyLinkedList<bool>*>& checkTable, Stack<Position> posList) {
+    Position curPos;
+    DoublyNode<DoublyLinkedList<bool>*>* curNodeOne;
+    DoublyNode<DoublyLinkedList<char>*>* curNodeTwo;
+    while(!posList.isEmpty()) {
+        curPos = posList.pop();
+        if(lGrid.get(curPos.rowNum)->get(curPos.colNum) == 'E') {
+            break;
+        } else {
+            curNodeOne = checkTable.head();
+            curNodeTwo = lGrid.head();
+            for(int z = 0; z < (checkTable.size() - 1); z++) {
+                curNodeOne = curNodeOne->pNext;
+                curNodeTwo = curNodeTwo->pNext;
+            }
+            curNodeOne->value->set(curPos.colNum, true);
+            curNodeTwo->value->set(curPos.colNum, '@');
+            
+            // get neighbor node
+            if((curPos.rowNum + 1) < lGrid.size() && checkTable.get(curPos.rowNum + 1)->get(curPos.colNum) == false && lGrid.get(curPos.rowNum + 1)->get(curPos.colNum) != '#') {
+                posList.push(Position(curPos.rowNum + 1, curPos.colNum));
+            } else if((curPos.colNum + 1) < lGrid.get(curPos.rowNum)->size() && checkTable.get(curPos.rowNum)->get(curPos.colNum + 1) == false && lGrid.get(curPos.rowNum)->get(curPos.colNum + 1) != '#') {
+                posList.push(Position(curPos.rowNum, curPos.colNum + 1));
+            } else if((curPos.rowNum - 1) >= 0 && checkTable.get(curPos.rowNum - 1)->get(curPos.colNum) == false && lGrid.get(curPos.rowNum - 1)->get(curPos.colNum) != '#') {
+                posList.push(Position(curPos.rowNum - 1, curPos.colNum));
+            } else if((curPos.colNum - 1) >= 0 && checkTable.get(curPos.rowNum)->get(curPos.colNum - 1) == false && lGrid.get(curPos.rowNum)->get(curPos.colNum - 1) != '#') {
+                posList.push(Position(curPos.rowNum, curPos.colNum - 1));
+            }
+        }
+    }
+}
 int operation_input(int minValue, int maxValue) {
     int userInput;
     do {
