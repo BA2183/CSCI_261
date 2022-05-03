@@ -3,6 +3,7 @@
  * Author: Duan Nguyen
  * Reference: old code and class slides
  * 
+ * Didn't work
  */
 #include "multi_functions.h"
 // code snipet at A3
@@ -65,7 +66,7 @@ int main(int argc, char* argv[]) {
         startPos = findStartUsingBFS(lGrid, checkTable, posList);
         posList.pop();
         posList.push(startPos);
-        findEndUsingBFS(lGrid, checkTable, posList, startPos);
+        findEndUsingBFS(lGrid, checkTable, posList);
         // DFS
     } else {
         Stack<Position> posList;
@@ -73,7 +74,7 @@ int main(int argc, char* argv[]) {
         startPos = findStartUsingDFS(lGrid, checkTable, posList);
         posList.pop();
         posList.push(startPos);
-        findEndUsingDFS(lGrid, checkTable, posList, startPos);
+        findEndUsingDFS(lGrid, checkTable, posList);
     }
     // print
     print(lGrid);

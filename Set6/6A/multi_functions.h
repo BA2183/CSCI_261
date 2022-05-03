@@ -13,7 +13,7 @@ bool open_file(ifstream&, string);
 void print(DoublyLinkedList<DoublyLinkedList<char>*>&);
 Position findStartUsingBFS(const DoublyLinkedList<DoublyLinkedList<char>*>&, DoublyLinkedList<DoublyLinkedList<bool>*>, Queue<Position>);
 Position findStartUsingDFS(const DoublyLinkedList<DoublyLinkedList<char>*>&, DoublyLinkedList<DoublyLinkedList<bool>*>, Stack<Position>);
-void findEndUsingBFS(DoublyLinkedList<DoublyLinkedList<char>*>&, DoublyLinkedList<DoublyLinkedList<bool>*>&, Queue<Position>,Position&);
-void findEndUsingDFS(DoublyLinkedList<DoublyLinkedList<char>*>&, DoublyLinkedList<DoublyLinkedList<bool>*>&, Stack<Position>,Position&);
+void findEndUsingBFS(DoublyLinkedList<DoublyLinkedList<char>*>&, DoublyLinkedList<DoublyLinkedList<bool>*>&, Queue<Position>);
+void findEndUsingDFS(DoublyLinkedList<DoublyLinkedList<char>*>&, DoublyLinkedList<DoublyLinkedList<bool>*>&, Stack<Position>);
 int operation_input(int, int);
 #endif
