@@ -28,9 +28,9 @@ int main() {
         return -1;
     }
 
-    int widthMax, heightMax;
+    int widthMax, heightMax, starShade;
     widthMax = heightMax = 640;
-    float xStar, yStar, tempValue, brightValue;
+    float xStar, yStar, tempValue, brightValue, xPixel, yPixel;
     vector<float> xVector;
     vector<float> yVector;
     vector<float> brightVector;
@@ -56,7 +56,13 @@ int main() {
         fileIn >> tempValue;
         fileIn >> tempValue;
     } while (!fileIn.eof());
-
+    // get max value
+    float maxBright = brightVector[0];
+    for(int i = 1; i < brightVector.size(); i++) {
+        if(brightVector[i] > maxBright) {
+            maxBright = brightVector[i];
+        }
+    }
     //  END  ANY FILE LOADING
     /////////////////////////////////////
 
@@ -70,10 +76,18 @@ int main() {
 
         /////////////////////////////////////
         // BEGIN DRAWING HERE
-
-        Star starShape(widthMax, heightMax, brightValue, 7);
-        starShape.setPosition(xStar, yStar);
-        window.draw(starShape);
+        
+        Star baseShape(widthMax, heightMax, maxBright);
+        baseShape.setRadius(2);
+        for(int j = 0; j < brightVector.size(); j++) {
+            xPixel = xVector[j];
+            yPixel = yVector[j];
+            baseShape.getPosition(xPixel, yPixel);
+            baseShape.setPosition(xPixel, yPixel);
+            starShade = baseShape.setBrightness(brightVector[j]);
+            baseShape.setFillColor(Color(starShade, starShade, starShade));
+            window.draw(baseShape);
+        }
 
         //  END  DRAWING HERE
         /////////////////////////////////////
